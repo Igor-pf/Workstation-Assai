@@ -4,13 +4,16 @@
     function verificar_versao() {
         versao_atual = 2.0
         var versao_local = document.getElementById("versao-local").value;
-        var versao_local_id = document.getElementById("versao-local");
+        var versao_local_id = document.getElementById("versao-local-id");
 
-        if (versao_atual > versao_local.value) {
+        if (versao_atual > versao_local) {
             
-            versao_local_id.style.display = 'block';}
+            versao_local_id.style.display = 'block';
+        }
         
         
         
     
     }
+
+    verificar_versao();
