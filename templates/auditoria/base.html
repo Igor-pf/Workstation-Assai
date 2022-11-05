@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
   <link href="{{ url_for('static', filename='w3.css') }}" rel="stylesheet">
+  
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
     </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,7 +26,9 @@
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> &nbsp;Menu</button><div class="topnav">
           
           <a class="" href="/visao-geral-auditoria">Auditoria</a> 
-          <a type="number" style="display: none;" id="versao-local" value="2.0" name="Versão Local 2.0" href="/nova-versao">Nova versão do aplicativo já está disponível!</a>
+          <input style="display: none;" type="number" id="versao-local"  value="2.0" name="Versão Local 2.0">
+          
+          <a type="number" style="display: none;" id="versao-local-id" href="/nova-versao">Nova versão do aplicativo já está disponível!</a>
           
           
       </div>
@@ -127,4 +130,6 @@
             })
     }
 </script> -->
+
+<script type="text/javascript" src="{{ url_for('static', filename='/js/versao.js') }}"></script>
   </body></html>
