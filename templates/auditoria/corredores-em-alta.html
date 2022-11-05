@@ -1,0 +1,23 @@
+{% extends "auditoria/base.html" %}
+
+{% block head %}
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='/js/Chart.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/js/jquery.min.js') }}"></script>
+
+
+{% endblock %}
+
+
+{% block container %}
+        <h4 class="container-text-center">TOP 15 CORREDORES EM ALTA SEM LEITURAS</h4>
+        <div class="column2" style="background-color:#fff;">
+
+            <!--<button id="shuffle">Organizar</button> -->
+            <canvas id="chart"></canvas>
+            <script type="text/javascript" src="{{ url_for('static', filename='/js/corredores-em-alta.js') }}"></script>
+        </div>
+    
+{% endblock %}
+

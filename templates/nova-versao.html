@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+	<meta charset=utf-8>
+	<meta name=theme-color content=#000000>
+	<title>Workstation Assaí - Nova Versão</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	
+	{% endblock %}
+
+
+	{% block container %}
+	
+	<div id=home class="title bg-transparent bgstyle text-light min-vh-100 d-flex align-content-center align-items-center flex-wrap m-0 jumbotron jumbotron-fluid" style="overflow:hidden;background:rgba(0,0,0,0) linear-gradient(136deg,rgb(68,132,206),rgb(26,215,192),rgb(255,155,17),rgb(155,89,182),rgb(255,127,127),rgb(236,240,241)) repeat scroll 0% 0% / 1200% 1200%">
+	<div id=stars></div>
+		<div class="text-center container">
+			<h1 class=display-1>Uma nova versão já está disponível</h1>
+			<div class="Typist lead typist">Atualize já para a nova versão do Workstation Assaí, para obter a novas funcionalidades do programa!</div>
+			
+			
+			
+			<a class="btn btn-outline-light btn-lg" role=button aria-label="New site" href="/nova-versao-link" style="margin-left: 10px;">Ir para o download →</a>
+		</div>
+	</div>
+
+	{% endblock %}
