@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>WORKSTATION ASSAI</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='img/logos/favicon.ico') }}" rel="icon">
+
+    <link href="{{ url_for('static', filename='css/css2.css') }}" rel="stylesheet">
+    
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="{{ url_for('static', filename='css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/Chart.bundle.js') }}"></script>
+    
+
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Carregando...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="/" class="margin-text-title-1 navbar-brand mx-4 mb-3">
+                    <h6 class="text-primary"><i class="fa fa-hashtag me-2"></i>WORKSTATION ASSAI</h6>
+                </a>
+               
+             
+                <div class="navbar-nav w-100">
+                    <a href="/dashboard-auditoria" class="nav-item nav-link {{active_parcial_dasboard}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/setor" class="nav-item nav-link {{active_parcial_auditoria}}"><i class="fa fa-table me-2"></i>Setor</a>
+                    <a href="/parcial-colaboradores" class="nav-item nav-link {{active_parcial_colaboradores}}"><i class="fa fa-users me-2"></i>Colaboradores</a>
+                    <a href="/parcial-corredores" class="nav-item nav-link {{active_parcial_corredores}}"><i class="fa fa-chart-line me-2"></i>Corredores</a>
+                    
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="/" class="navbar-brand d-flex d-lg-none me-4 margin-text-title-2">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="btn-group" role="group" style="margin-left: 24px;">
+                    <a href="/dashboard-auditoria" class="btn btn-primary">Auditoria</a>
+                    <input style="display: none;" type="number" id="versao-local"  value="2.7" name="Versão Local 2.7">
+                    <a type="number" class="btn btn-outline-primary" style="display: none;" id="versao-local-id" href="/nova-versao">Nova versão do aplicativo já está disponível!</a>
+                    
+                    
+                    
+                </div>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <a href="/upload-xlsx" type="button" class="btn btn-outline-primary m-2"><i class="fa fa-upload me-2"></i>Atualizar Dados</a>
+                    <a href="#" class="nav-link">
+                        <img class="rounded-circle me-lg-2 logo-user" src="{{ url_for('static', filename='img/User.png') }}" alt="" style="width: 53px; height: 40px;">
+                        <span class="d-none d-lg-inline-flex">Usuário: <strong> {{user}}</strong></span>
+                    </a>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <h4 class="container-text-center">TOP 15 CORREDORES EM ALTA SEM LEITURAS</h4>
+                    <div class="column2" style="background-color:#fff;">
+
+                        <!--<button id="shuffle">Organizar</button> -->
+                        <canvas id="chart"></canvas>
+                        <script type="text/javascript" src="{{ url_for('static', filename='/js/corredores-em-alta.js') }}"></script>
+                    </div>
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            
+                            Desenhado e Distribuido por <a href="/creditos">Igor Pereira Formighieri</a>
+                        </br>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        
+    </div>
+    
+
+    <!-- JavaScript Libraries -->
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/fluxo-de-leituras.js') }}"></script>
+    <script type="text/javascript" src="https://repositorio.servicealicerce.com/programas/Workstation-Assai/static/js/versao.js"></script>
+</body>
+
+</html>

@@ -1,3 +1,23 @@
+#   Copyright (c) 2023 Igor Pereira Formighieri <igorpereira1069@gmail.com>
+#
+#   A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia
+#   deste software e arquivos de documentação associados (o "Software"), para lidar
+#   no Software sem restrições, incluindo, sem limitação, os direitos
+#   usar, copiar, modificar, fundir, publicar, distribuir, sublicenciar e/ou vender
+#   cópias do Software e para permitir que as pessoas a quem o Software é
+#   munidos para o efeito, nas seguintes condições:
+#
+#   O aviso de direitos autorais acima e este aviso de permissão devem ser incluídos em todos os
+#   cópias ou partes substanciais do Software.
+#
+#   O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU
+#   IMPLÍCITAS, INCLUINDO, SEM LIMITAÇÃO, AS GARANTIAS DE COMERCIALIZAÇÃO,
+#   ADEQUAÇÃO PARA UM FIM ESPECÍFICO E NÃO VIOLAÇÃO. EM NENHUM CASO O
+#   OS AUTORES OU DETENTORES DOS DIREITOS AUTORAIS SERÃO RESPONSÁVEIS POR QUALQUER REIVINDICAÇÃO, DANOS OU OUTROS
+#   RESPONSABILIDADE, SEJA EM UMA AÇÃO DE CONTRATO, ILÍCITO OU DE OUTRA FORMA, DECORRENTE DE,
+#   FORA DE OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTROS NEGÓCIOS NO
+#   PROGRAMAS.
+
 from ast import In
 import json
 from folder import *
@@ -15,9 +35,7 @@ def json_output(dados, name):
 
 def parcial_colaboradores_json():
 
-    
-
-    unique = { each['Usu\u00e1rio'] : each for each in json_dados("dados") }.values()
+    unique = { each['Usu\u00e1rio'] : each for each in json_dados("dados-auditoria") }.values()
     
     lines_unique=[]
     dictionary = []
@@ -28,8 +46,7 @@ def parcial_colaboradores_json():
     for i in unique:
         lines_unique.append(i['Usu\u00e1rio'])
 
-    
-    for d in json_dados("dados"):
+    for d in json_dados("dados-auditoria"):
 
             dictionary.append(                                
                                 {   
@@ -54,13 +71,9 @@ def parcial_colaboradores_json():
             )
    
     final_colaboradores= sorted(dados_parcial_complete, key=lambda k: k['valores'], reverse=True)
-    
 
-    
-    
     for f_colaboradores in final_colaboradores:
-
-        
+  
             dados_parcial_name.append(
                 
                 str(f_colaboradores["colaboradores"]),
@@ -80,9 +93,7 @@ def parcial_colaboradores_json():
 
 def parcial_corredores_json(sku):
 
-     
-
-    unique = { each['Local'] : each for each in json_dados("dados") }.values()
+    unique = { each['Local'] : each for each in json_dados("dados-auditoria") }.values()
 
     for d in json_dados("dados-auditoria-atual"):
         if d['Auditoria'] == "Presença":
@@ -93,7 +104,6 @@ def parcial_corredores_json(sku):
         elif d['Auditoria'] == "Etiqueta":
                 SEM_PRESENCA = 'Não lidos com estoque'
                 print("Auditoria de Etiqueta")
-   
 
     SITUACAO = 'Situa\u00e7\u00e3o'
     lines_unique=[]
@@ -105,32 +115,25 @@ def parcial_corredores_json(sku):
     for i in unique:
         lines_unique.append(i['Local'])
 
-    for d in json_dados("dados"):
-
-        
+    for d in json_dados("dados-auditoria"):
+     
             dictionary.append(                                
                                 {   
                                     d['Local'] : d[SITUACAO], 
                                     
                                 } 
                             )
-       
-
 
     for dados_unique in lines_unique:
         numero = 9000
-        
-        
+ 
         for d in dictionary:
-           
-           
+
             if dados_unique in d:
                 
                     if d[dados_unique] == SEM_PRESENCA:
                         numero = numero+1
-                        
-                    
-           
+    
         if not dados_unique == None:
             dados_parcial_complete.append({
                 "corredores": str(dados_unique),
@@ -138,7 +141,6 @@ def parcial_corredores_json(sku):
                 
             }
                 )
-
 
     final_corredores= sorted(dados_parcial_complete, key=lambda k: k['valores'], reverse=True)
 
@@ -167,9 +169,7 @@ def parcial_corredores_json(sku):
 
 def parcial_corredores_com_vendas_json():
 
-     
-
-    unique = { each['Local'] : each for each in json_dados("dados") }.values()
+    unique = { each['Local'] : each for each in json_dados("dados-auditoria") }.values()
     SEM_PRESENCA = 'Sem Presença e Com Estoque'
     SITUACAO = 'Situa\u00e7\u00e3o'
     lines_unique=[]
@@ -181,7 +181,7 @@ def parcial_corredores_com_vendas_json():
     for i in unique:
         lines_unique.append(i['Local'])
 
-    for d in json_dados("dados"):
+    for d in json_dados("dados-auditoria"):
 
             dictionary.append(                                
                                 {   
@@ -192,18 +192,14 @@ def parcial_corredores_com_vendas_json():
 
     for dados_unique in lines_unique:
         numero = 9000
-        
-        
+  
         for d in dictionary:
-           
-           
+      
             if dados_unique in d:
                 
                     if d[dados_unique] == SEM_PRESENCA:
                         numero = numero+1
-                        
-                    
-           
+       
         if not dados_unique == None:
             dados_parcial_complete.append({
                 "corredores": str(dados_unique),
@@ -211,7 +207,6 @@ def parcial_corredores_com_vendas_json():
                 
             }
                 )
-
 
     final_corredores= sorted(dados_parcial_complete, key=lambda k: k['valores'], reverse=True)
 
@@ -232,7 +227,6 @@ def parcial_corredores_com_vendas_json():
                 str(int(f["valores"])-9000),
             
             )
-    
 
     dados_parcial_html = 'const CHART = document.getElementById("chart"); Chart.defaults.global.animation.duration = 1000; Chart.plugins.register({  beforeUpdate: function(chart) { if (chart.options.sort) { let labels = chart.data.labels;  let dataArray = chart.data.datasets[0].data.slice();  let mapValueLabel = {};  dataArray.forEach((value, index) => {    mapValueLabel[value] = labels[index];  });  dataArray.sort((a, b) => b - a);  let meta = chart.getDatasetMeta(0);  let newLabels = [];  dataArray.forEach((a, i) => {    newLabels[i] = mapValueLabel[a];  });  chart.data.datasets[0].data = dataArray;  chart.data.labels = newLabels;    }  } });  $(document).ready(function(){    var chartdata = {   labels: '+str(dados_parcial_name)+',    datasets: [{    label: "SEM LEITURAS",    data: '+str(dados_parcial_values)+',    backgroundColor: ["#4b4268", "#b15928", "#fb9a99", "#cab2d6", "#e31a1c", "#b2df8a", "#ff7f00", "#33a02c", "#1f78b4","#0563b5","#ac99e9","#5b762b", "#eb005b","#3a2e33","#35cbba","#284208","#66932f","#661e06","#000000","#65746b","#011278","#3a3d50","#919299","#d9b728","#1f5e6e","#c38280","#661411","#44a0f7"],    }] };   var barGraph = new Chart(CHART, {  type: "horizontalBar" ,  data: chartdata,  options: {    scales: {  xAxes: [{    ticks: {  beginAtZero: true    }  }] }  }    });  });'
     
@@ -245,7 +239,7 @@ def parcial_classe_produto():
     dados_parcial_name = []
     dados_parcial_values = []
 
-    unique = { each['Classe de Produto Raiz'] : each for each in json_dados("dados") }.values()
+    unique = { each['Classe de Produto Raiz'] : each for each in json_dados("dados-auditoria") }.values()
     for d in json_dados("dados-auditoria-atual"):
         if d['Auditoria'] == "Presença":
                         
@@ -259,31 +253,23 @@ def parcial_classe_produto():
     for i in unique:
         lines_unique.append(i['Classe de Produto Raiz'])
 
-
-    
     for dados_unique in lines_unique:
         numero = 2000
-        for d in json_dados("dados"):
+        for d in json_dados("dados-auditoria"):
 
             if dados_unique == d['Classe de Produto Raiz'] and d['Situação'] == SEM_PRESENCA:
               numero = numero+1
-                              
-  
+
         if not dados_unique == None:
             dados_parcial_complete.append({
                 "Classe de Produto Raiz": str(dados_unique),
                 "valores": str(numero),
-                
             })
-
+    
     final_classe_produto_raiz = sorted(dados_parcial_complete, key=lambda k: k['valores'], reverse=True)
 
-
-    
-
     for f in final_classe_produto_raiz:
-
-        
+ 
             dados_parcial_name.append(
                 
                 str(f["Classe de Produto Raiz"]),
@@ -300,8 +286,6 @@ def parcial_classe_produto():
     
     
     ##dados_parcial_html = 'const CHART = document.getElementById("classe_produto_raiz"); Chart.defaults.global.animation.duration = 1000; Chart.plugins.register({  beforeUpdate: function(chart) { if (chart.options.sort) { let labels = chart.data.labels;  let dataArray = chart.data.datasets[0].data.slice();  let mapValueLabel = {};  dataArray.forEach((value, index) => {    mapValueLabel[value] = labels[index];  });  dataArray.sort((a, b) => b - a);  let meta = chart.getDatasetMeta(0);  let newLabels = [];  dataArray.forEach((a, i) => {    newLabels[i] = mapValueLabel[a];  });  chart.data.datasets[0].data = dataArray;  chart.data.labels = newLabels;    }  } });  $(document).ready(function(){    var chartdata = {   labels: '+str(dados_parcial_name)+',    datasets: [{    label: "SEM LEITURAS",    data: '+str(dados_parcial_values)+',    backgroundColor: ["#4b4268", "#b15928", "#fb9a99", "#cab2d6", "#e31a1c", "#b2df8a", "#ff7f00", "#33a02c", "#1f78b4","#0563b5","#ac99e9","#5b762b", "#eb005b","#3a2e33","#35cbba","#284208","#66932f","#661e06","#000000","#65746b","#011278","#3a3d50","#919299","#d9b728","#1f5e6e","#c38280","#661411","#44a0f7"],    }] };   var barGraph = new Chart(CHART, {  type: "pie" ,  data: chartdata,  options: {    scales: {  xAxes: [{    ticks: {  beginAtZero: true    }  }] }  }    });  });'
-    
-    
-    
+ 
     with open(os.path.join(os.getcwd(), 'static', 'js')+"\\classe-produtos-raiz.js", "w") as outfile: 
             outfile.write(dados_parcial_html) 
